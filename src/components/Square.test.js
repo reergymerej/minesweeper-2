@@ -1,5 +1,5 @@
 import React from 'react'
-import {
+import Square, {
   Covered,
   Depressed,
   Uncovered,
@@ -172,5 +172,36 @@ describe('Uncovered', () => {
         expect(wrapper.hasClass('exploded')).toBe(true)
       })
     })
+  })
+})
+
+describe('Square', () => {
+  const factory = (props = {}) => {
+    return shallow(
+      <Square
+        {...props}
+      />
+    )
+  }
+
+  it('should show the correct component based on the state', () => {
+    const wrapper = factory({
+      uncovered: true,
+    })
+    expect(wrapper.find('Uncovered').length).toBe(1)
+  })
+
+  it('should show the correct component based on the state', () => {
+    const wrapper = factory({
+      depressed: true,
+    })
+    expect(wrapper.find('Depressed').length).toBe(1)
+  })
+
+  it('should show the correct component based on the state', () => {
+    const wrapper = factory({
+      covered: true,
+    })
+    expect(wrapper.find('Covered').length).toBe(1)
   })
 })

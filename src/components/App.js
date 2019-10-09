@@ -1,14 +1,28 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import { increment, decrement } from '../actions'
+import Square, { Uncovered, Depressed, Covered } from './Square'
 
 class App extends Component {
   render() {
     return (
       <div className="container mx-auto my-8">
-        <div>{this.props.count}</div>
-        <button onClick={this.props.decrement}>decrement</button>
-        <button onClick={this.props.increment}>increment</button>
+        <Square covered
+          maybe
+          onDepress={() => {
+            return console.log('depressing')
+          }}
+          onModeChange={() => {
+            return console.log('mode change')
+          }}
+        />
+        <Square covered flagged />
+        <Square covered maybe />
+        <Square depressed />
+        <Square uncovered />
+        <Square uncovered mine />
+        <Square uncovered mine exploded />
+        <Square uncovered number={3} />
       </div>
     )
   }

@@ -1,18 +1,6 @@
 import React from 'react'
 import cx from 'classnames'
-
-const Square = (props) => {
-  const className = cx({
-    number: props.number,
-    mine: props.mine,
-    exploded: props.exploded,
-  })
-  return (
-    <div className={className}>
-      {props.number}
-    </div>
-  )
-}
+import './Square.css'
 
 export const Uncovered = (props) => {
   const className = cx({
@@ -56,6 +44,24 @@ export const Covered = (props) => {
       onClick={onDepress}
       onContextMenu={onContextMenu}
     />
+  )
+}
+
+const Square = (props) => {
+  let Component
+  if (props.uncovered) {
+    Component = Uncovered
+  } else if (props.depressed) {
+    Component = Depressed
+  } else if (props.covered) {
+    Component = Covered
+  }
+  return (
+    <div className="Square">
+      <Component
+        {...props}
+      />
+    </div>
   )
 }
 
